@@ -1,5 +1,5 @@
 FROM iexechub/sconecuratedimages-iexec:cli-alpine   AS scone
-FROM nexus.iex.ec/scone-utils:0.0.1                 AS utils
+FROM iexechub/scone-utils:0.0.1                     AS utils
 FROM iexechub/sconecuratedimages-iexec:python-3.7.3-alpine-3.10
 
 COPY --from=scone   /opt/scone/scone-cli    /opt/scone/scone-cli
