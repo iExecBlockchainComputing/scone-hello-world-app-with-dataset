@@ -1,17 +1,15 @@
-FROM iexechub/sconecuratedimages-iexec:cli-alpine   AS scone
-FROM nexus.iex.ec/scone-utils:0.0.1                 AS utils
+FROM iexechub/sconecuratedimages-iexec:cli-alpine AS scone
+
 FROM iexechub/sconecuratedimages-iexec:python-3.7.3-alpine-3.10
 
 COPY --from=scone   /opt/scone/scone-cli    /opt/scone/scone-cli
 COPY --from=scone   /usr/local/bin/scone    /usr/local/bin/scone
 COPY --from=scone   /opt/scone/bin          /opt/scone/bin
-COPY --from=utils   /iexec/signer.py        /signer/signer.py
-COPY --from=utils   /iexec/protect-fs.sh  /iexec/protect-fs.sh
-
-### start editing from here
 
 
-# install apk dependencies
+################################
+
+### install apk dependencies
 RUN apk add --no-cache bash build-base gcc libgcc
 
 ### uncomment and add your pip dependencies
@@ -21,9 +19,18 @@ RUN apk add --no-cache bash build-base gcc libgcc
 # COPY ./requirements.txt /requirements.txt
 # RUN SCONE_MODE=sim pip install -r /requirements.txt
 
-### copy code folder and protect it with scone
+### copy the code inside the image
 COPY ./src /app
-RUN bash /iexec/protect-fs.sh /app
 
+################################
+
+
+### please don't change those 2 lines
+COPY ./utils/signer.py      /signer/signer.py
+COPY ./utils/protect-fs.sh  /iexec/protect-fs.sh
+
+###  protect file system with scone
+RUN bash /iexec/protect-fs.sh /app
+RUN rm /iexec/protect-fs.sh
 
 ENTRYPOINT python3 /app/app.py
