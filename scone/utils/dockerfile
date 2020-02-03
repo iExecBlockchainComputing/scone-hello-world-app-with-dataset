@@ -1,4 +1,0 @@
-FROM alpine:3.10
-
-COPY ./signer.py /iexec/signer.py
-COPY ./protect-fs.sh /iexec/protect-fs.sh

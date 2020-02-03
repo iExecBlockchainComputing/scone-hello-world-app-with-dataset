@@ -15,12 +15,14 @@ scone fspf addr /tmp/fspf.pb /bin       --authenticated --kernel /bin
 scone fspf addf /tmp/fspf.pb /bin       /bin
 scone fspf addr /tmp/fspf.pb /lib       --authenticated --kernel /lib
 scone fspf addf /tmp/fspf.pb /lib       /lib
-scone fspf addr /tmp/fspf.pb /etc       --authenticated --kernel /etc
-scone fspf addf /tmp/fspf.pb /etc       /etc
+scone fspf addr /tmp/fspf.pb /etc/ssl   --authenticated --kernel /etc/ssl
+scone fspf addf /tmp/fspf.pb /etc/ssl   /etc/ssl
 scone fspf addr /tmp/fspf.pb /sbin      --authenticated --kernel /sbin
 scone fspf addf /tmp/fspf.pb /sbin      /sbin
 scone fspf addr /tmp/fspf.pb /iexec     --authenticated --kernel /iexec
 scone fspf addf /tmp/fspf.pb /iexec     /iexec
+scone fspf addr /tmp/fspf.pb /signer    --authenticated --kernel /signer
+scone fspf addf /tmp/fspf.pb /signer    /signer
 
 printf "\n==> Protecting code found in folder: \"$APP_FOLDER\""
 scone fspf addr /tmp/fspf.pb $APP_FOLDER --authenticated --kernel $APP_FOLDER
