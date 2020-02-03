@@ -1,3 +1,3 @@
-# sgx
+# Confidential Computing Tutorials
 
-Tutorials about SGX
+Tutorials about Confidential Computing using Intel® SGX, ...
