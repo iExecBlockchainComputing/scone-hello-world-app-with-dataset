@@ -1,2 +1,6 @@
+# print to stdout
 print("Hello from inside the enclave!")
-print("It's dark over here!")
+
+# produce a result file
+with open("/scone/my-result-file.txt", "w+") as result_file:
+    result_file.write("It's dark over here!")
