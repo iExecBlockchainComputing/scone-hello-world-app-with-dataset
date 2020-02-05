@@ -1,1 +1,0 @@
-hello-world-app/utils/protect-fs.sh

@@ -26,7 +26,7 @@ COPY ./src /app
 
 
 ### this file is a temporary work around and it will
-### remove in the next releases but it is required
+### be removed in the next releases but it is required
 ### by the iExec plateform for now.
 COPY ./utils/signer.py /signer/signer.py
 
