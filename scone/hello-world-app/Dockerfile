@@ -25,12 +25,14 @@ COPY ./src /app
 ################################
 
 
-### please don't change those 2 lines
-COPY ./utils/signer.py      /signer/signer.py
-COPY ./utils/protect-fs.sh  /iexec/protect-fs.sh
+### this file is a temporary work around and it will
+### remove in the next releases but it is required
+### by the iExec plateform for now.
+COPY ./utils/signer.py /signer/signer.py
 
 ###  protect file system with scone
-RUN bash /iexec/protect-fs.sh /app
-RUN rm /iexec/protect-fs.sh
+COPY ./utils/protect-fs.sh  /protect-fs.sh
+RUN bash /protect-fs.sh /app
+RUN rm /protect-fs.sh
 
 ENTRYPOINT python3 /app/app.py

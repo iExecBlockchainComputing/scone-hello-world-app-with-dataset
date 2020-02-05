@@ -6,7 +6,7 @@ export SCONE_ALPINE=1
 
 APP_FOLDER=$1
 
-printf "\n==> Starting file system protection..."
+printf "\n### Starting file system protection ...\n\n"
 
 scone fspf create /tmp/fspf.pb
 
@@ -24,7 +24,7 @@ scone fspf addf /tmp/fspf.pb /sbin      /sbin
 scone fspf addr /tmp/fspf.pb /signer    --authenticated --kernel /signer
 scone fspf addf /tmp/fspf.pb /signer    /signer
 
-printf "\n==> Protecting code found in folder: \"$APP_FOLDER\""
+printf "\n### Protecting code found in folder \"$APP_FOLDER\"\n\n"
 scone fspf addr /tmp/fspf.pb $APP_FOLDER --authenticated --kernel $APP_FOLDER
 scone fspf addf /tmp/fspf.pb $APP_FOLDER $APP_FOLDER
 
