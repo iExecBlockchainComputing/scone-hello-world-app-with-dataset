@@ -9,17 +9,17 @@ COPY --from=scone   /opt/scone/bin          /opt/scone/bin
 
 ################################
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories \
-    && apk update \
-    && apk add --update-cache --no-cache libgcc bash \
-    && apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev \
-    && apk add --no-cache --virtual .build-deps gcc musl-dev
+### install apk dependencies
+RUN apk add --no-cache bash build-base gcc libgcc
 
-RUN SCONE_MODE=sim pip install attrdict python-gnupg web3
+## install pip3 dependencies
+RUN SCONE_MODE=sim pip3 install attrdict python-gnupg web3
 
+### copy the code inside the image
 COPY src /app
 
 ################################
+
 
 ### this file is a temporary work around and it will
 ### be removed in the next releases but it is required
