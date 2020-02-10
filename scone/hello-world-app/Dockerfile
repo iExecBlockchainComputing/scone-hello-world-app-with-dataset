@@ -1,16 +1,23 @@
-FROM iexechub/python-scone
+FROM iexechub/sconecuratedimages-iexec:cli-alpine AS scone
+
+FROM iexechub/sconecuratedimages-iexec:python-3.7.3-alpine-3.10
+
+COPY --from=scone   /opt/scone/scone-cli    /opt/scone/scone-cli
+COPY --from=scone   /usr/local/bin/scone    /usr/local/bin/scone
+COPY --from=scone   /opt/scone/bin          /opt/scone/bin
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories \
     && apk update \
-    && apk add --update-cache --no-cache libgcc \
+    && apk add --update-cache --no-cache libgcc bash \
     && apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev \
     && apk add --no-cache --virtual .build-deps gcc musl-dev
 
 
 RUN SCONE_MODE=sim pip install attrdict python-gnupg web3
 
-RUN cp /usr/bin/python3.6 /usr/bin/python3
+RUN cp /usr/bin/python3.7 /usr/bin/python3
 
+COPY utils/signer.py /signer/signer.py
 COPY src /app
 
 RUN SCONE_MODE=sim SCONE_HASH=1 SCONE_HEAP=1G SCONE_ALPINE=1		    \
