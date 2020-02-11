@@ -6,7 +6,6 @@ COPY --from=scone   /opt/scone/scone-cli    /opt/scone/scone-cli
 COPY --from=scone   /usr/local/bin/scone    /usr/local/bin/scone
 COPY --from=scone   /opt/scone/bin          /opt/scone/bin
 
-
 ################################
 
 ### install apk packages
@@ -20,7 +19,6 @@ COPY src /app
 
 ################################
 
-
 ### this file is a temporary work around and it will
 ### be removed in the next releases but it is required
 ### by the iExec plateform for now.
@@ -28,7 +26,6 @@ COPY ./utils/signer.py /signer/signer.py
 
 ###  protect file system with scone
 COPY ./utils/protect-fs.sh  /protect-fs.sh
-# RUN SCONE_MODE=sim SCONE_HEAP=1G SCONE_ALPINE=1 bash /protect-fs.sh /app
 RUN bash /protect-fs.sh /app
 
 ENTRYPOINT python3 /app/app.py
