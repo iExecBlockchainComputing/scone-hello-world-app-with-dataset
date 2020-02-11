@@ -27,6 +27,7 @@ COPY ./utils/signer.py /signer/signer.py
 ###  protect file system with scone
 COPY ./utils/protect-fs.sh  /protect-fs.sh
 RUN bash /protect-fs.sh /app
+# RUN rm /fspf.pb
 # RUN rm /protect-fs.sh
 
 ENTRYPOINT python3 /app/app.py
