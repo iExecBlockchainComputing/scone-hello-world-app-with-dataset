@@ -7,7 +7,7 @@ export SCONE_ALPINE=1
 APP_FOLDER=$1
 
 printf "\n### Starting file system protection ...\n\n"
-
+cd /root
 scone fspf create /fspf.pb
 scone fspf addr /fspf.pb /          --not-protected --kernel /
 scone fspf addr /fspf.pb /usr       --authenticated --kernel /usr
