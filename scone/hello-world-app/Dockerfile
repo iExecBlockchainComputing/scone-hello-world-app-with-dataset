@@ -29,6 +29,6 @@ COPY ./utils/signer.py /signer/signer.py
 ###  protect file system with scone
 COPY ./utils/protect-fs.sh  /protect-fs.sh
 # RUN SCONE_MODE=sim SCONE_HEAP=1G SCONE_ALPINE=1 && bash /protect-fs.sh /app
-RUN bash /protect-fs.sh /app
+RUN SCONE_MODE=sim SCONE_HEAP=1G SCONE_ALPINE=1 bash /protect-fs.sh /app
 
 ENTRYPOINT python3 /app/app.py

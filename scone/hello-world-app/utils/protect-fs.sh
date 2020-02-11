@@ -47,8 +47,7 @@
 
 ###############################
 
-SCONE_MODE=sim SCONE_HASH=1 SCONE_HEAP=1G SCONE_ALPINE=1		    \
-	&& mkdir conf							    \
+mkdir conf							    \
 	&& scone fspf create fspf.pb 					    \
 	&& scone fspf addr fspf.pb /  --not-protected --kernel /            \
 	&& scone fspf addr fspf.pb /usr --authenticated --kernel /usr       \
