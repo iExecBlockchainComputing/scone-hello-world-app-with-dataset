@@ -1,9 +1,9 @@
 # #!/bin/bash
 
 # # export SCONE_HASH=1
-# export SCONE_MODE=sim
-# export SCONE_HEAP=1G
-# export SCONE_ALPINE=1
+export SCONE_MODE=sim
+export SCONE_HEAP=1G
+export SCONE_ALPINE=1
 
 # APP_FOLDER=$1
 
