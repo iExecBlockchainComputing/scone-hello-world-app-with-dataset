@@ -11,7 +11,7 @@ COPY --from=scone   /opt/scone/bin          /opt/scone/bin
 ### install apk packages
 RUN apk add --no-cache bash build-base gcc libgcc
 
-## install pip3 dependencies
+### install pip3 dependencies
 RUN SCONE_MODE=sim pip3 install attrdict python-gnupg web3
 
 ### copy the code inside the image
@@ -27,8 +27,7 @@ COPY ./utils/signer.py /signer/signer.py
 ###  protect file system with scone
 COPY ./utils/protect-fs.sh  /protect-fs.sh
 RUN bash /protect-fs.sh /app
-# RUN rm /fspf.pb
-# RUN rm /tmp/keytag
-# RUN rm /protect-fs.sh
+RUN rm /protect-fs.sh
+RUN rm /keytag
 
 ENTRYPOINT python3 /app/app.py
