@@ -16,7 +16,7 @@ COPY ./utils/signer.py /signer/signer.py
 ### install apk packages
 RUN apk add --no-cache bash build-base gcc libgcc
 
-### install pip3 dependencies
+### install python3 dependencies
 RUN SCONE_MODE=sim pip3 install attrdict python-gnupg web3
 
 ### copy the code inside the image
