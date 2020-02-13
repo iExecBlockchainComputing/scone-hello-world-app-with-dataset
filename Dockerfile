@@ -29,8 +29,8 @@ COPY ./utils/protect-fs.sh /protect-fs.sh
 RUN bash /protect-fs.sh /app
 RUN rm /protect-fs.sh /keytag
 
-### we need only to start the python interpreter
-### inside the enclave, the execution params will be
-### retrieved from the blockchain (the --params option)
-### but before that we should prepare the dataset folder
-ENTRYPOINT unzip -o /iexec_in/$IEXEC_DATASET_FILENAME -d /iexec_in && python
+### Prepare dataset folder before starting the enclave.
+### The entrypoint should match the params attribute
+### written on the blockchain (the --params option of
+### "iexec app run" command).
+ENTRYPOINT unzip -o /iexec_in/$IEXEC_DATASET_FILENAME -d /iexec_in && python /app/app.py
