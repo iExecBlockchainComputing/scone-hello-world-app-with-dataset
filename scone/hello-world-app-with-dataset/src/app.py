@@ -1,19 +1,28 @@
-
-# open dataset file
-with open("/iexec_in/hello-world.txt", "r") as dataset_file:
-    data = dataset_file.read()
-
-    # print dataset content to stdout
-    print("Dataset content: " + data)
-
-    # open result file and write dataset file content
-    with open("/scone/my-result.txt", "w+") as result_file:
-        result_file.write(data)
+import os
+import zipfile
 
 
-# print to stdout
-print("Hello from inside the enclave!")
+# def unzip_dataset():
+#     dataset_filepath = "/iexec_in/" + os.environ["IEXEC_DATASET_FILENAME"]
+#     print("==> dataset: " + dataset_filepath)
+#     with zipfile.ZipFile(dataset_filepath, 'r') as zip:
+#         zip.extractall("/iexec_in")
 
-# write the content of the dataset to a result file
-with open("/scone/my-result-file.txt", "w+") as result_file:
-    result_file.write("It's dark over here!")
+def read_file(filepath):
+    with open(filepath, "r") as f:
+        return f.read()
+
+def write_file(path, data):
+    with open(path, "w+") as f:
+        f.write(data)
+
+
+if __name__ == "__main__":
+    input_filepath = "/iexec_in/my-first-dataset/hello-world.txt"
+    result_filepath = "/scone/my-result.txt"
+
+    # unzip_dataset()
+    print("### content of /iexec_in: " + os.listdir("/iexec_in"))
+
+    data = read_file(input_filepath)
+    write_file(result_filepath, data)
