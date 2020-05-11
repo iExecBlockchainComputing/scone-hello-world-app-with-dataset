@@ -6,12 +6,8 @@ COPY --from=scone   /opt/scone/scone-cli    /opt/scone/scone-cli
 COPY --from=scone   /usr/local/bin/scone    /usr/local/bin/scone
 COPY --from=scone   /opt/scone/bin          /opt/scone/bin
 
-### this file is a temporary work around and it will
-### be removed in the next releases but it is required
-### by the iExec plateform for now.
-COPY ./utils/signer.py /signer/signer.py
-
 ################################
+# YOU CAN EDIT THIS SECTION
 
 ### install apk packages
 RUN apk add --no-cache bash build-base gcc libgcc
